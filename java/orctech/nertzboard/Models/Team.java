@@ -1,4 +1,4 @@
-package orctech.nertzboard;
+package orctech.nertzboard.Models;
 
 /**
  * Created by justinjlee99 on 5/11/2018.
@@ -8,6 +8,9 @@ public class Team {
     String name;
     int score;
 
+    public Team() {
+        this("default", 0);
+    }
     public Team(String name, int score) {
         this.name = name;
         this.score = score;
@@ -21,6 +24,7 @@ public class Team {
         this.name = name;
     }
 
+
     public int getScore() {
         return score;
     }
@@ -28,4 +32,6 @@ public class Team {
     public void setScore(int score) {
         this.score = score;
     }
+
+    public void addScore(int toAdd) { this.score += toAdd; }
 }

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import orctech.nertzboard.R;
-import orctech.nertzboard.Team;
+import orctech.nertzboard.Models.Team;
 
 /**
  * Created by justinjlee99 on 5/11/2018.
@@ -62,7 +62,8 @@ public class TeamAdapter extends BaseAdapter {
         Team a = (Team) getItem(position);
 
         nameTextView.setText(a.getName());
-        scoreTextView.setText(""+a.getScore());
+        String num = ""+a.getScore();
+        scoreTextView.setText(num);
         //descTextView.setText(a.getDescription());
 
         return rowView;

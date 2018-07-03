@@ -1,12 +1,12 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/RelativeLayout01"
+    android:id="@+id/list_name_layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:padding="10dp">
 
     <TextView
-        android:id="@+id/team_name"
+        android:id="@+id/team_number"
 
         android:textColor="@android:color/black"
         android:textSize="18sp"
@@ -15,17 +15,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/team_score"
-        android:layout_toLeftOf="@+id/team_score"/>
+        android:layout_toStartOf="@+id/name_edit"
+        android:layout_toLeftOf="@+id/name_edit"/>
 
-    <TextView
-        android:id="@+id/team_score"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/name_edit"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
-
+        android:inputType="text"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="18sp"/>
 </RelativeLayout>
 
