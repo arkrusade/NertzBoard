@@ -17,6 +17,7 @@ public class NameActivity extends AppCompatActivity {
     int numTeams;
     ListView mListView;
     ArrayList<String> names;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +36,7 @@ public class NameActivity extends AppCompatActivity {
 
         //TODO: remove debug
         for (int i = 0; i < numTeams; i++) {
-            names.set(i, ""+(i+1)+" "+(i+1));
+            names.set(i, "" + (i + 1) + " " + (i + 1));
         }
         updateTable();
 
@@ -53,13 +54,15 @@ public class NameActivity extends AppCompatActivity {
 //        }, 1000);
 //        mListView.setOnItemClickListener(mMessageClickedHandler);
     }
+
     private void updateTable() {
         NameAdapter adapt = new NameAdapter(this, names);
         mListView.setAdapter(adapt);
     }
+
     public void startGame(View view) {
         Intent intent = new Intent(this, BoardActivity.class);
-        Bundle b=new Bundle();
+        Bundle b = new Bundle();
         NameAdapter adapt = new NameAdapter(this, names);
         mListView.setAdapter(adapt);
         b.putStringArray(GAME_INIT, names.toArray(new String[names.size()]));
@@ -67,7 +70,8 @@ public class NameActivity extends AppCompatActivity {
         startActivity(intent);
     }
     // Activates EditText of name for team when clicked
-//    private AdapterView.OnItemClickListener mMessageClickedHandler = new AdapterView.OnItemClickListener() {
+//    private AdapterView.OnItemClickListener mMessageClickedHandler = new AdapterView
+// .OnItemClickListener() {
 //        public void onItemClick(AdapterView parent, View v, int position, long id) {
 //            Context context = getApplicationContext();
 //            EditText activate = v.findViewById(R.id.name_edit);

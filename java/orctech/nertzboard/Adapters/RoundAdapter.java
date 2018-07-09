@@ -16,36 +16,26 @@ import java.util.ArrayList;
 
 import orctech.nertzboard.R;
 
-/**
- * Created by justinjlee99 on 5/11/2018.
- */
-
-public class NameAdapter extends BaseAdapter {
+public class RoundAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater mInflater;
-    private ArrayList<String> names;
+    private ArrayList<Integer> scores;
 
-    public NameAdapter(@NonNull Context context,
-                       @NonNull ArrayList<String> objects) {
-        names = objects;
+    public RoundAdapter(@NonNull Context context, ArrayList<Integer> scores) {
+        this.scores = scores;
         mContext = context;
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-//    public NameAdapter(Context context, ArrayList<String> items) {
-//
-//    }
-
-    //1
     @Override
     public int getCount() {
-        return names.size();
+        return scores.size();
     }
 
     //2
     @Override
-    public String getItem(int position) {
-        return names.get(position);
+    public Integer getItem(int position) {
+        return scores.get(position);
     }
 
     //3
@@ -55,8 +45,8 @@ public class NameAdapter extends BaseAdapter {
     }
 
     class ViewHolder {
-        EditText nameField;
-        TextView teamNum;
+        EditText scoreEdit;
+        TextView teamName;
     }
 
     @NonNull
@@ -65,28 +55,30 @@ public class NameAdapter extends BaseAdapter {
         ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = mInflater.inflate(R.layout.list_item_name, null);
-            holder.nameField = (EditText) convertView
-                    .findViewById(R.id.name_edit);
-            convertView.setTag(holder);
+            convertView = mInflater.inflate(R.layout.list_item_round, null);
+            holder.scoreEdit = (EditText) convertView
+                    .findViewById(R.id.round_score_edit);
 
-            String info = "Team #" + (position + 1) + ":";
-            holder.teamNum = (TextView) convertView.findViewById(R.id.team_number);
-            holder.teamNum.setText(info);
+            String info = "Score Team #" + (position + 1) + ":";
+            holder.teamName = (TextView) convertView.findViewById(R.id.team_name_round);
+            holder.teamName.setText(info);
+
+            convertView.setTag(holder);
 
         }
         else {
             holder = (ViewHolder) convertView.getTag();
         }
         //Fill EditText with the value you have in data source
-        holder.nameField.setText(names.get(position));
-        holder.nameField.setId(position);
+        String scoreString = scores.get(position) + "";
+        holder.scoreEdit.setText(scoreString);
+        holder.scoreEdit.setId(position);
 
         //we need to update adapter once we finish with editing
-        holder.nameField.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+        holder.scoreEdit.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                names.set(textView.getId(), textView.getText().toString());
+                scores.set(textView.getId(), Integer.parseInt(textView.getText().toString()));
                 if (i == EditorInfo.IME_ACTION_DONE) {
                     textView.clearFocus();
                     InputMethodManager imm = (InputMethodManager) mContext.getSystemService(
@@ -99,12 +91,12 @@ public class NameAdapter extends BaseAdapter {
                 return false;
             }
         });
-        holder.nameField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        holder.scoreEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             public void onFocusChange(View v, boolean hasFocus) {
                 final EditText nameText = (EditText) v;
                 if (!hasFocus) {
                     final int position = v.getId();
-                    names.set(position, nameText.getText().toString());
+                    scores.set(position, Integer.parseInt(nameText.getText().toString()));
                 }
                 else {
                     ((EditText) v).selectAll();
@@ -115,4 +107,5 @@ public class NameAdapter extends BaseAdapter {
 
         return convertView;
     }
+
 }

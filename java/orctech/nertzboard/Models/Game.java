@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Game {
     private int numTeams = 5;
+    int roundNumber = 0;
     private ArrayList<Team> teams = new ArrayList<>(0);
     public Game() {
         for (int i = 0; i < numTeams; i++) {
@@ -36,5 +37,11 @@ public class Game {
     }
     public void setTeams(ArrayList<Team> teams) {
         this.teams = teams;
+    }
+
+    public void scoreRound(ArrayList<Integer> scores) {
+        for (int i = 0; i < numTeams; i++) {
+            changeScore(i, scores.get(i));
+        }
     }
 }
