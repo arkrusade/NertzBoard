@@ -2,7 +2,6 @@ package orctech.nertzboard.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ListView;
@@ -35,16 +34,16 @@ public class NameActivity extends AppCompatActivity {
         }
 
         //TODO: remove debug
-        for (int i = 0; i < numTeams; i++) {
-            names.set(i, "" + (i + 1) + " " + (i + 1));
-        }
+//        for (int i = 0; i < numTeams; i++) {
+//            names.set(i, "" + (i + 1) + " " + (i + 1));
+//        }
         updateTable();
 
-        new Handler().postDelayed(new Runnable() {
-            public void run() {
-                findViewById(R.id.set_names).callOnClick();
-            }
-        }, 1000);
+//        new Handler().postDelayed(new Runnable() {
+//            public void run() {
+//                findViewById(R.id.set_names).callOnClick();
+//            }
+//        }, 1000);
 
 //        new Handler().postDelayed(new Runnable() {
 //            public void run() {

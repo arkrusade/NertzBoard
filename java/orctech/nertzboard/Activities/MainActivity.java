@@ -17,14 +17,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        autoRun();
+        //autoRun();
     }
     public void autoRun() {
-        EditText num_text = (EditText) findViewById(R.id.num_teams_init);
+        EditText num_text = findViewById(R.id.num_teams_init);
         num_text.setText("2");
         final Button b = findViewById(R.id.set_num_teams);
-                b.performClick();
+        b.performClick();
         new Handler().postDelayed(new Runnable() {
             public void run() {
             }

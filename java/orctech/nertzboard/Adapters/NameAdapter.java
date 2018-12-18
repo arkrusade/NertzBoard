@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -57,6 +58,7 @@ public class NameAdapter extends BaseAdapter {
     class ViewHolder {
         EditText nameField;
         TextView teamNum;
+        Button addOrDeleteButton;
     }
 
     @NonNull
@@ -73,7 +75,10 @@ public class NameAdapter extends BaseAdapter {
             String info = "Team #" + (position + 1) + ":";
             holder.teamNum = (TextView) convertView.findViewById(R.id.team_number);
             holder.teamNum.setText(info);
-
+//            holder.addOrDeleteButton = (Button) convertView.findViewById(R.id.buttonAdd);
+//
+//            holder.captionEditText.setFocusable(true);
+//            holder.captionEditText.requestFocus();
         }
         else {
             holder = (ViewHolder) convertView.getTag();

@@ -18,8 +18,11 @@ public class Game {
             teams.add(new Team(names[i], 0));
         }
     }
-    public void changeScore(int team, int score) {
-        teams.get(team).addScore(score);
+
+    public void setScores(ArrayList<Integer> scores) {
+        for (int i = 0; i < numTeams; i++) {
+            teams.get(i).setScore(scores.get(i));
+        }
     }
     public int getNumTeams() {
         return numTeams;
@@ -41,7 +44,7 @@ public class Game {
 
     public void scoreRound(ArrayList<Integer> scores) {
         for (int i = 0; i < numTeams; i++) {
-            changeScore(i, scores.get(i));
+            teams.get(i).addScore(scores.get(i));
         }
     }
 }
