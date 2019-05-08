@@ -3,6 +3,7 @@ package orctech.nertzboard.Activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -34,12 +35,15 @@ public class BoardActivity extends AppCompatActivity {
         }
 
         updateTable();
+        autoRun();
+    }
 
-//        new Handler().postDelayed(new Runnable() {
-//            public void run() {
-//                findViewById(R.id.end_round).callOnClick();
-//            }
-//        }, 1000);
+    public void autoRun() {
+                new Handler().postDelayed(new Runnable() {
+            public void run() {
+                findViewById(R.id.end_round).callOnClick();
+            }
+        }, 1000);
     }
 
     @Override
@@ -48,7 +52,7 @@ public class BoardActivity extends AppCompatActivity {
         if(requestCode == 0 && resultCode == RoundActivity.FINISH_WITH_SCORE) {
             if (data.hasExtra(RoundActivity.SCORE_ROUND)) {
                 ArrayList<Integer> scores = data.getExtras().getIntegerArrayList(RoundActivity.SCORE_ROUND);
-                game.scoreRound(scores);
+                game.addScores(scores);
                 updateTable();
             }
         }
@@ -69,7 +73,7 @@ public class BoardActivity extends AppCompatActivity {
 
     public void endRound(View v) {
         Intent intent = new Intent(this, RoundActivity.class);
-        intent.putExtra(MainActivity.NUM_TEAMS_INIT, game.getNumTeams());
+        intent.putExtra(RoundActivity.SCORE_ROUND, game.getTeams().size());
         startActivityForResult(intent, 0);
     }
 

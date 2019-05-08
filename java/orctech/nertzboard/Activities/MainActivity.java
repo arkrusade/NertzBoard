@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //autoRun();
+        autoRun();
     }
     public void autoRun() {
         EditText num_text = findViewById(R.id.num_teams_init);

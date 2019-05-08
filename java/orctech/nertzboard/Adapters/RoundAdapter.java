@@ -45,6 +45,7 @@ public class RoundAdapter extends BaseAdapter {
     }
 
     class ViewHolder {
+        EditText scoreDiffEdit;
         EditText scoreEdit;
         TextView teamName;
     }
@@ -56,8 +57,8 @@ public class RoundAdapter extends BaseAdapter {
         if (convertView == null) {
             holder = new ViewHolder();
             convertView = mInflater.inflate(R.layout.list_item_round, null);
-            holder.scoreEdit = (EditText) convertView
-                    .findViewById(R.id.round_score_edit);
+            holder.scoreDiffEdit = (EditText) convertView
+                    .findViewById(R.id.round_score_diff_edit);
 
             String info = "Score Team #" + (position + 1) + ":";
             holder.teamName = (TextView) convertView.findViewById(R.id.team_name_round);
@@ -70,7 +71,10 @@ public class RoundAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         //Fill EditText with the value you have in data source
-        String scoreString = scores.get(position) + "";
+        while(position >= scores.size()) {
+            scores.add(-1);
+        }
+        String scoreString = scores.get(position).toString();
         holder.scoreEdit.setText(scoreString);
         holder.scoreEdit.setId(position);
 

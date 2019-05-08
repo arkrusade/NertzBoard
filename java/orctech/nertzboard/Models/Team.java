@@ -5,12 +5,13 @@ package orctech.nertzboard.Models;
  */
 
 public class Team {
-    String name;
-    int score;
+    private String name;
+    private int score = 0;
 
-    public Team() {
-        this("default", 0);
+    public Team(String name) {
+        this.name = name;
     }
+
     public Team(String name, int score) {
         this.name = name;
         this.score = score;

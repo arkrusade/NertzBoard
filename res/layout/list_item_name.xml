@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:hint="Enter Name Here"
         android:inputType="text"
         android:selectAllOnFocus="true"
         android:singleLine="true"

@@ -24,7 +24,7 @@ public class RoundActivity extends AppCompatActivity {
         setContentView(R.layout.activity_round);
 
         Intent intent = getIntent();
-        numTeams = intent.getIntExtra(MainActivity.NUM_TEAMS_INIT, 0);
+        numTeams = intent.getIntExtra(SCORE_ROUND, 0);
 
         roundScores = new ArrayList<>(numTeams);
         mListView = (ListView) findViewById(R.id.list_round_layout);

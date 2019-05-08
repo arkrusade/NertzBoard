@@ -2,8 +2,11 @@ package orctech.nertzboard.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -30,7 +33,7 @@ public class NameActivity extends AppCompatActivity {
         mListView.setItemsCanFocus(true);
 
         for (int i = 0; i < numTeams; i++) {
-            names.add(i, "Enter Name Here");
+            names.add(i, "");
         }
 
         //TODO: remove debug
@@ -38,22 +41,24 @@ public class NameActivity extends AppCompatActivity {
 //            names.set(i, "" + (i + 1) + " " + (i + 1));
 //        }
         updateTable();
-
-//        new Handler().postDelayed(new Runnable() {
-//            public void run() {
-//                findViewById(R.id.set_names).callOnClick();
-//            }
-//        }, 1000);
-
-//        new Handler().postDelayed(new Runnable() {
-//            public void run() {
-//                View entry = (View) mListView.getAdapter().getItem(0);
-//                entry.findViewById(R.id.name_edit).requestFocus();
-//            }
-//        }, 1000);
-//        mListView.setOnItemClickListener(mMessageClickedHandler);
+        autoRun();
     }
 
+    private void autoRun() {
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                findViewById(R.id.set_names).callOnClick();
+            }
+        }, 1000);
+
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                View entry = (View) mListView.getAdapter().getItem(0);
+                entry.findViewById(R.id.name_edit).requestFocus();
+            }
+        }, 1000);
+        mListView.setOnItemClickListener(mMessageClickedHandler);
+    }
     private void updateTable() {
         NameAdapter adapt = new NameAdapter(this, names);
         mListView.setAdapter(adapt);
@@ -69,13 +74,12 @@ public class NameActivity extends AppCompatActivity {
         startActivity(intent);
     }
     // Activates EditText of name for team when clicked
-//    private AdapterView.OnItemClickListener mMessageClickedHandler = new AdapterView
-// .OnItemClickListener() {
-//        public void onItemClick(AdapterView parent, View v, int position, long id) {
-//            Context context = getApplicationContext();
-//            EditText activate = v.findViewById(R.id.name_edit);
-//            activate.selectAll();
-//        }
-//    };
+    private AdapterView.OnItemClickListener mMessageClickedHandler = new AdapterView
+ .OnItemClickListener() {
+        public void onItemClick(AdapterView parent, View v, int position, long id) {
+            EditText activate = v.findViewById(R.id.name_edit);
+            activate.selectAll();
+        }
+    };
 
 }
